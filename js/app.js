@@ -161,8 +161,9 @@ $scope.doContactPickerTest = function() {
 
   // Hole Kontakt aus Adressbuch
   $scope.doContactPicker = function() {
+	  
   	navigator.contacts.pickContact(function(contact){  		
-  		var p = {name: contact.displayName};
+		var p = {name: getName(contact)};		
 	 	$scope.createPupil(p);  		
   	}, function(err) {
   		navigator.notification.alert(err, null, "Failure");
@@ -175,6 +176,23 @@ $scope.doContactPickerTest = function() {
 	 	$scope.createPupil(p);  		
   	
   }
+  /* 
+   * Handles iOS mot returninh displayName or returning null
+   */
+  function getName(c) {	  
+	  var name = c.displayName;
+	  if(!name || name === "") {
+		  if(c.name.formatted) {
+			  return c.name.formatted;
+		  }
+		  if(c.name.givenName && c.name.familyName ) {
+			  return c.name.givenName + " " + c.name.familyName;
+		  }
+		  return "Nameless";
+	  }
+	  return name;
+  }
+  
   
  
   
