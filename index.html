@@ -41,9 +41,9 @@
 		<div ng-show="myShow">
 		
 		<p>Bienchen {{bienchen.length}}</p>
-		<pre ng-repeat="x in pupil.ratings | filter:isBigSpender | filter:q as bienchen " >{{ x.datum }}</pre>
+		<pre ng-repeat="x in pupil.ratings | filter:isBigSpender | filter:q as bienchen " >{{ x.datum | date : "dd.MM.y (HH:mm:ss)"}}</pre>
 		<p>Teufelchen {{teufelchen.length}}</p>
-		<pre ng-repeat="x in pupil.teufelchen | filter:q as teufelchen ">{{x.datum}} - {{ x.datum | date: 'yyyy-MM-dd hh-mm-ss' }}</pre>
+		<pre ng-repeat="x in pupil.teufelchen | filter:q as teufelchen ">{{ x.datum | date : "dd.MM.y (HH:mm:ss)" }}</pre>
 				
 		</div>
 		  <ion-option-button class="button-calm"
