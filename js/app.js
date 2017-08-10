@@ -45,7 +45,9 @@ app.factory('Subjects', function() {
 
 
 
-app.controller('BbtfCtrl', function($scope, $timeout, $ionicModal, Subjects, $ionicSideMenuDelegate, $ionicPopup, $http, $log) {
+app.controller('BbtfCtrl', function($scope, $timeout, $ionicModal, Subjects, $ionicSideMenuDelegate, $ionicPopup, $http, $log, $ionicActionSheet) {
+
+	$scope.showDetails = false;
  
 	// Filter zum Sortieren nach Name oder Bienchen 
 	$scope.orderByMe = function(x) {
@@ -334,8 +336,8 @@ app.filter('datumSelektion', function(){
   return function(input, von, bis){
     var out = [];
     angular.forEach(input, function(wertung){
-      if((wertung.datum > von) || (von == "")){
-        if(wertung.datum < bis)
+      if((wertung.datum > von) || (isNaN(von))){
+        if(wertung.datum < bis || isNaN(bis))
         out.push(wertung)
       }
     })
