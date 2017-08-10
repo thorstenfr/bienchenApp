@@ -329,3 +329,16 @@ $scope.doContactPickerTest = function() {
   }, 1000);
 
 })
+
+app.filter('datumSelektion', function(){
+  return function(input, von, bis){
+    var out = [];
+    angular.forEach(input, function(wertung){
+      if((wertung.datum > von) || (von == "")){
+        if(wertung.datum < bis)
+        out.push(wertung)
+      }
+    })
+    return out;
+  }
+})
