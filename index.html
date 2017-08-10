@@ -63,8 +63,31 @@
 		
 	
       </ion-content>
+      	<div class="tabs tabs-icon-left">
+			<a class="tab-item" ng-click="show()">
+    			<i class="icon ion-arrow-up-c"></i>
+    			A-z
+  			</a>
+  			
+			<a class="tab-item" ng-class="myActive" ng-click="toggle('myShow')"> 
+    			<i class="icon ion-information-circled"></i>
+    			Details
+  			</a>
+			<input type="date" ng-model="myVonDate" name="" value="" />
+			
+			<input type="date" ng-model="myBisDate" name="" value="" />
+			
+		</div>
+	
+      <!--
 	  	<ion-footer-bar class="bar-dark">
-			<button ng-click="orderByMe('name')">A-z</button>
+	  	<a class="tab-item" ng-click="show()">
+    			<i class="icon ion-arrow-up-c"></i>
+    			A-z
+  			</a>
+  			
+			<button ng-click="show()"> 	<i class="icon ion-arrow-up-c"></i>
+    		 A-z</button>
 			<button ng-click="orderByMe('-name')">Z-a</button>
 			<button ng-click="orderByMe('-bienchen')">Ratings</button>
             <ion-checkbox ng-model="myShow">Zeige Details: </ion-checkbox>
@@ -72,6 +95,7 @@
 			
 			<input type="date" ng-model="myBisDate" name="" value="" />
   		</ion-footer-bar>
+  		-->
     </ion-side-menu-content>
 
     <!-- Left menu -->

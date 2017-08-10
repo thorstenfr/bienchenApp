@@ -48,6 +48,57 @@ app.factory('Subjects', function() {
 app.controller('BbtfCtrl', function($scope, $timeout, $ionicModal, Subjects, $ionicSideMenuDelegate, $ionicPopup, $http, $log, $ionicActionSheet) {
 
 	$scope.showDetails = false;
+	$scope.myActive = false;
+	$scope.show = function() {
+
+   // Show the action sheet
+   var hideSheet = $ionicActionSheet.show({
+     buttons: [
+       { text: '<ion-icon name="heart"></ion-icon>Nach Titel aufsteigend' },
+	   { text: 'Nach Titel absteigend' },
+       { text: 'Nach Aufwand aufsteigend' },
+	   { text: 'Nach Aufwand absteigend' }
+     ],
+     // destructiveText: 'Delete',
+     titleText: 'Sortieren der Tätigkeiten',
+     cancelText: 'Cancel',
+     cancel: function() {
+          // add cancel code..
+        },
+     buttonClicked: function(index) {
+       
+	   switch (index) {
+	  	case 0:
+		  	$scope.orderByMe('name');
+		   	break;
+		case 1:
+			$scope.orderByMe('-name');
+		   	break;
+		case 2:
+			$scope.orderByMe('bienchen');
+			break;
+		case 3:
+			$scope.orderByMe('-bienchen');
+		   break;
+		   
+	   }
+	   
+		 
+		 return true;
+     }
+   });
+   // For example's sake, hide the sheet after two seconds
+   $timeout(function() {
+     hideSheet();
+   }, 2000);
+
+};
+	
+	
+	$scope.toggle = function(v) {
+		$scope[v] = !$scope[v];
+	
+	}	
  
 	// Filter zum Sortieren nach Name oder Bienchen 
 	$scope.orderByMe = function(x) {
