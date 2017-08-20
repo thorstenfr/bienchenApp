@@ -54,13 +54,13 @@ app.controller('BbtfCtrl', function($scope, $timeout, $ionicModal, Subjects, $io
    // Show the action sheet
    var hideSheet = $ionicActionSheet.show({
      buttons: [
-       { text: '<ion-icon name="heart"></ion-icon>Nach Titel aufsteigend' },
-	   { text: 'Nach Titel absteigend' },
-       { text: 'Nach Aufwand aufsteigend' },
-	   { text: 'Nach Aufwand absteigend' }
+       { text: '<ion-icon name="heart"></ion-icon>Nach Name aufsteigend' },
+	   { text: 'Nach Name absteigend' },
+       { text: 'Nach Bienchen aufsteigend' },
+	   { text: 'Nach Bienchen absteigend' }
      ],
      // destructiveText: 'Delete',
-     titleText: 'Sortieren der Tätigkeiten',
+     titleText: 'Sortieren der Teilnehmer',
      cancelText: 'Cancel',
      cancel: function() {
           // add cancel code..
@@ -91,6 +91,53 @@ app.controller('BbtfCtrl', function($scope, $timeout, $ionicModal, Subjects, $io
    $timeout(function() {
      hideSheet();
    }, 2000);
+
+};
+
+
+
+$scope.showDatumFilter = function() {
+
+   // Show the action sheet
+   var hideSheet = $ionicActionSheet.show({
+     buttons: [
+       { text: '<ion-icon name="heart"></ion-icon>Setze von Datum' },
+	   { text: 'Nach Name absteigend' },
+       { text: 'Nach Bienchen aufsteigend' },
+	   { text: 'Nach Bienchen absteigend' }
+     ],
+     // destructiveText: 'Delete',
+     titleText: 'Nach Datum filtern',
+     cancelText: 'Cancel',
+     cancel: function() {
+          // add cancel code..
+        },
+     buttonClicked: function(index) {
+       
+	   switch (index) {
+	  	case 0:
+		  	$scope.orderByMe('name');
+		   	break;
+		case 1:
+			$scope.orderByMe('-name');
+		   	break;
+		case 2:
+			$scope.orderByMe('bienchen');
+			break;
+		case 3:
+			$scope.orderByMe('-bienchen');
+		   break;
+		   
+	   }
+	   
+		 
+		 return true;
+     }
+   });
+   // For example's sake, hide the sheet after two seconds
+   $timeout(function() {
+     hideSheet();
+   }, 20000);
 
 };
 	
@@ -143,6 +190,7 @@ $scope.doContactPickerTest = function() {
      var alertPopup = $ionicPopup.alert({
        title: 'Klasse hat Schüler!',
        template: 'Klasse kann nur gelöscht werden, wenn sie keine Schüler hat.'
+      // templateUrl: 'new-pupil.html'
      });
      alertPopup.then(function(res) {
        console.log('Thank you for not eating my delicious ice cream cone');
@@ -342,6 +390,16 @@ $scope.doContactPickerTest = function() {
 
     pupil.name = "";
   };
+  
+  // Modal-Dialog zur Auswahl des Datum-Filters
+  $scope.datumFilter = function() {
+    $scope.datumModal.show();
+  };
+    $scope.closedatumFilter = function() {
+    $scope.datumModal.hide();
+  }
+
+
 
   $scope.newPupil = function() {
     $scope.pupilModal.show();

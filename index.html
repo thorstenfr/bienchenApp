@@ -66,16 +66,22 @@
       	<div class="tabs tabs-icon-left">
 			<a class="tab-item" ng-click="show()">
     			<i class="icon ion-arrow-up-c"></i>
-    			A-zz
+    			A-z
   			</a>
-  			
-			<a class="tab-item" ng-class="myActive" ng-click="toggle('myShow')"> 
+  			<a class="tab-item" ng-click="showDatumFilter()">
+    			<i class="icon ion-calendar"></i>
+    			Datum
+  			</a>
+  			<a class="tab-item" ng-class="myActive" ng-click="toggle('myShow')"> 
     			<i class="icon ion-information-circled"></i>
     			Details
   			</a>
+  			
 			<input type="date" ng-model="myVonDate" name="" value="" />
 			
 			<input type="date" ng-model="myBisDate" name="" value="" />
+			
+			
 			
 		</div>
 	
@@ -136,8 +142,7 @@
     </ion-side-menu>
 	
 	<script id="new-pupil.html" type="text/ng-template">
-
-  <div class="modal" >
+	<div class="modal" >
 
     <!-- Modal header bar -->
     <ion-header-bar class="bar-secondary">
@@ -151,9 +156,10 @@
 
       <form ng-submit="createPupil(pupil)">
         <div class="list">
-		
-          <label class="item item-input">		  
-            <input type="text" placeholder="Wie heisst der Schüler?" ng-model="pupil.name">
+		  
+          <label class="item item-input">
+          Name: 		  
+            <input id="name_input" type="text" placeholder="Wie heisst der Schüler?" ng-model="pupil.name">
           </label>
         </div>
         <div class="padding">
